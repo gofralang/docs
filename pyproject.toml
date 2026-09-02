@@ -1,0 +1,21 @@
+[project]
+name = "gofra-docs"
+version = "0.0.1"
+description = "Documentation for Gofra programming language"
+requires-python = ">=3.12,<4.0"
+license = "MIT"
+readme = "README.md"
+authors = [{ name = "Kirill Zhosul", email = "kirillzhosul@yandex.com" }]
+
+[project.urls]
+repository = "https://github.com/gofralang/docs"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+mkdocs = "^1.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
