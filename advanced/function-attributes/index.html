@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Function Attributes - Gofra</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Gofra</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../installation/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../tutorial/" class="nav-link">Tutorial</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../" class="nav-link">Advanced</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/kirillzhosul/gofra/edit/main/docs/advanced/function-attributes.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#function-attributes" class="nav-link">Function Attributes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#no_return-attribute" class="nav-link">no_return attribute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#inline-attribute" class="nav-link">inline attribute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#extern-attribute" class="nav-link">extern attribute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pub-attribute" class="nav-link">pub attribute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#naked-attribute" class="nav-link">naked attribute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="function-attributes">Function Attributes</h1>
+<p>Function attributes in Gofra are defined like so:</p>
+<pre><code class="language-ebnf">FunctionDef = {&quot;pub&quot; | &quot;extern&quot; | &quot;no_return&quot; | &quot;inline}, &quot;func&quot;, ...FunctionRestDef
+</code></pre>
+<p>Here is description of each attribute</p>
+<h2 id="no_return-attribute"><code>no_return</code> attribute</h2>
+<p>Marks function as having no possible way out, for example <code>exit</code> system function, these function must has no return value</p>
+<p>Compiler will warn you if you have function that always calls to <code>no_return</code> functions, and emit possible other warnings</p>
+<p><code>no-return</code> allows to emit general compiler warnings/errors and perform possible optimizations, mostly used in compiler library, but useful if you calling <code>exit</code> function and has nothing more</p>
+<p>This checks appears only at compile-time and has no effect on runtime</p>
+<pre><code class="language-gofra">no_return func void x[]
+    // Must has no way out
+end
+
+
+func void x1[]
+   call exit // warning, always calling to `no_return` function - propagate attribute
+
+   2 2 + drop // warning, unreachable code, and allows to apply optimizations like DCE
+end
+
+
+func void x1[]
+    false if == 
+        call exit // may have conditional `no_return` calls without any warning
+    end
+end
+</code></pre>
+<h2 id="inline-attribute"><code>inline</code> attribute</h2>
+<p>Functions that marked as <code>inline</code> has no real-call in runtime, it expands their tokens right into caller block
+These function cannot have local variables as may pollute original caller blocks</p>
+<p>TODO: For now, inline functions has lack of compiler-time checks (e.g typechecking), and may be not so safe to use, and are hard to debug, non-inlineable functions are always better now</p>
+<p>For more information what is inlining and optimization look into <a href="../optimizations/">Optimizations</a> documentation</p>
+<p>For example:</p>
+<pre><code class="language-gofra">func int reduce_pairs[int,int,int,int]
+    + + +
+end
+
+func void main[]
+    1 2 3 4 reduce_pairs // yields 10
+end
+
+// After inlining this is becomes:
+inline func int reduce_pairs[int,int,int,int]
+    + + +
+end
+
+// And main is reduced to:
+func void main[]
+    1 2 3 4 + + + // yields 10
+end
+</code></pre>
+<h2 id="extern-attribute"><code>extern</code> attribute</h2>
+<p>Functions marked with <code>extern</code> attribute will be treated as externally defined via FFI (Gofra ones, other C-FFI) for example external function <code>puts</code> from <code>libc</code> is declared as:</p>
+<pre><code class="language-gofra">extern func int _puts[*char[]]
+</code></pre>
+<p>This means function symbol <code>_puts</code> is not available inside current object file (co-program) but will appear later at linkage step within another object file (library)</p>
+<p>For more information what is FFI look into <a href="../ffi/">FFI</a> documentation</p>
+<h2 id="pub-attribute"><code>pub</code> attribute</h2>
+<p>Function marked with <code>pub</code> attribute are opposite to <code>extern</code> ones - they expose this function symbol to object file and allow other object files to link with it</p>
+<h2 id="naked-attribute"><code>naked</code> attribute</h2>
+<p>Naked functions is functions which does not have prologue and epilogue in machine code, they can contain only inline assembly instructions (<code>inline_raw_asm</code>). They allows to write an function which is unsafe and native, mostly for example for context switching (e.g generators, async)</p>
+<p>```gofra
+naked func void f[]
+    // no prologue
+    inline_raw_asm "..."
+    inline_raw_asm "ret" // required as has no return instruction (naked)
+    // no epilogue
+end</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
