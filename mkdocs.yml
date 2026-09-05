@@ -1,11 +1,15 @@
 site_name: Gofra
 site_description: Documentation for Gofra programming language
+site_author: Kirill Zhosul
+site_url: https://gofralang.github.io/docs
 
 theme:
   name: mkdocs
+  language: en
 
-repo_url: https://github.com/kirillzhosul/gofra
-edit_uri: edit/main/docs/
+repo_name: gofralang/docs
+repo_url: https://github.com/gofralang/docs
+edit_uri: edit/main/
 
 nav:
   - About: index.md

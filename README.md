@@ -1,7 +1,27 @@
-# Documentation for Gofra programming language
+# Gofra Documentation
+
+Documentation for Gofra programming language
+
+Available live at [Github Pages](https://gofralang.github.io/docs)
+
+## Quick Start
+
+### Requirements
 
 ```bash
-# Serve documentation
+# Install via poetry
 poetry install
-poetry run python -m mkdocs serve
+```
+
+### Local preview
+
+```bash
+poetry run mkdocs serve
+```
+
+### Build
+
+```bash
+poetry run mkdocs Build
+poetry run mkdocs gh-deploy # Owners deploy
 ```

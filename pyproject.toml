@@ -6,14 +6,17 @@ requires-python = ">=3.12,<4.0"
 license = "MIT"
 readme = "README.md"
 authors = [{ name = "Kirill Zhosul", email = "kirillzhosul@yandex.com" }]
+keywords = ["gofra", "documentation", "mkdocs"]
 
 [project.urls]
 repository = "https://github.com/gofralang/docs"
+documentation = "https://gofralang.github.io/docs"
 
 [tool.poetry]
 package-mode = false
 
 [tool.poetry.dependencies]
+python = ">=3.12,<4.0"
 mkdocs = "^1.6.1"
 
 [build-system]
