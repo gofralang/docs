@@ -3,16 +3,54 @@ site_description: Documentation for Gofra programming language
 site_author: Kirill Zhosul
 site_url: https://gofralang.github.io/docs
 
-theme:
-  name: mkdocs
-  language: en
+copyright: Copyright &copy; 2021&ndash;2026 Kirill Zhosul
 
-repo_name: gofralang/docs
-repo_url: https://github.com/gofralang/docs
-edit_uri: edit/main/
+repo_name: gofralang/gofra
+repo_url: https://github.com/gofralang/gofra
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - toc.follow
+    - search.highlight
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
 
 nav:
   - About: index.md
   - Installation: installation.md
-  - Tutorial: tutorial/index.md
-  - Advanced: advanced/index.md
+  - Reference:
+      - Attributes: reference/attributes.md
+      - Type casting: reference/typecasts.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gofralang
+      name: Gofra on GitHub
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/JnaZKBJckn
+      name: Gofra on Discord
+  generator: true
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: false
+      type: date
+      strict: false
+      enable_git_follow: false
+
+hooks:
+  - register_lexer.py
+
+markdown_extensions:
+  - pymdownx.superfences
