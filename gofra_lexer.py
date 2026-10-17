@@ -32,7 +32,14 @@ class GofraLexer(RegexLexer):
         "struct",
         "union",
         "inline_raw_asm",
+        "pointer_of_proc",
+        "offset_of",
+        "align_of",
+        "const",
         "typecast",
+        "lambda",
+        "type",
+        "var",
     )
 
     stack_ops = (
@@ -57,6 +64,13 @@ class GofraLexer(RegexLexer):
         "false",
     )
 
+    preprocessor = (
+        "#include",
+        "#endif",
+        "#ifdef",
+        "#ifndef",
+    )
+
     types = (
         "int",
         "i32",
@@ -66,6 +80,7 @@ class GofraLexer(RegexLexer):
         "char",
         "bool",
         "void",
+        "string",
     )
 
     tokens = {  # noqa: RUF012
@@ -75,6 +90,7 @@ class GofraLexer(RegexLexer):
             (r"\b0x[0-9a-fA-F]+\b", Number.Hex),
             (r"\b\d+\.\d+\b", Number.Float),
             (r"\b\d+\b", Number.Integer),
+            (words(preprocessor, suffix=r"\b"), Keyword.Preprocessor),
             (words(attributes, suffix=r"\b"), Keyword.Declaration),
             (words(statements, suffix=r"\b"), Keyword),
             (words(stack_ops, suffix=r"\b"), Name.Builtin),

@@ -15,8 +15,8 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.indexes
-    - navigation.sections
     - navigation.top
+    - navigation.expand
     - search.suggest
     - toc.follow
     - search.highlight
@@ -25,11 +25,75 @@ theme:
     repo: fontawesome/brands/github
 
 nav:
-  - About: index.md
-  - Installation: installation.md
+  - Home:
+      - index.md
+      - Installation: how-to/installation.md
+
+  - Tutorial:
+      - Tutorial: tutorial/index.md
+
+  - How to:
+      - How to: how-to/index.md
+      - Installation: how-to/installation.md
+      - Development installation: how-to/development-installation.md
+      - Editors: how-to/editors.md
+      - Low-level:
+          - FFI: how-to/ffi.md
+          - WASM: how-to/wasm.md
+
   - Reference:
-      - Attributes: reference/attributes.md
-      - Type casting: reference/typecasts.md
+      - Reference: reference/index.md
+      - Compiler:
+          - CLI: reference/cli.md
+          - Optimizations: reference/compiler/optimizations.md
+          - Targets: reference/compiler/targets.md
+      - General:
+          - Operators: reference/operators.md
+          - Keywords: reference/keywords.md
+          - Variables: reference/variables.md
+          - Control flow: reference/control-flow.md
+          - Functions: reference/functions.md
+          - Literals: reference/literals.md
+          - Preprocessor: reference/preprocessor.md
+          - Attributes: reference/attributes.md
+          - Lambdas: reference/lambdas.md
+      - Type system:
+          - Type casting: reference/typesystem/type-casting.md
+          - Type definition: reference/typesystem/type-definition.md
+          - Generic types: reference/typesystem/generic-types.md
+      - Types:
+          - String (*string): reference/types/string.md
+          - Aggregates:
+              - Union(union T): reference/types/union.md
+              - Structures(struct T): reference/types/structures.md
+          - Composite:
+              - Function (type func): reference/types/function.md
+              - Pointer (*T): reference/types/pointer.md
+              - Arrays (T[N]): reference/types/arrays.md
+          - Primitives:
+              - Integers (i64, ...): reference/types/integers.md
+              - Char (char): reference/types/char.md
+              - Void (void): reference/types/void.md
+              - Boolean (bool): reference/types/boolean.md
+
+  - Explanation:
+      - Explanation: explanation/index.md
+      - Module system: explanation/module-system.md
+      - Compiler:
+          - Architecture: explanation/compiler/architecture.md
+          - Optimizations: explanation/compiler/optimizations.md
+          - Typechecker: explanation/compiler/typechecker.md
+
+  - Standard library:
+      - std/io: stdlib/io.md
+      - std/math: stdlib/math.md
+      - std/types: stdlib/types.md
+      - std/char: stdlib/char.md
+      - std/assert: stdlib/assert.md
+
+      - std/random: stdlib/random.md
+      - std/string: stdlib/string.md
+      - std/string_builder: stdlib/string-builder.md
 
 extra:
   social:
@@ -54,3 +118,6 @@ hooks:
 
 markdown_extensions:
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.blocks.admonition

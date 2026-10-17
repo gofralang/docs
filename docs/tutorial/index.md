@@ -1,12 +1,40 @@
-# Usage and tutorials
+# Getting started
 
-### [IDE and Editor support](../editors.md)
-### [Control flow](./control-flow.md)
-### [Memory management](./memory.md)
-### [Stack management operators](./stack-management-operators.md)
-### [Bitwise operators](./bitwise-operators.md)
-### [Variables](./variables.md)
-### [Structures](./structures.md)
-### [Type casts](./typecasts.md)
-### [Arrays](../datatypes/array.md)
-### [Strings](../datatypes/string.md)
+This tutorial walks you through your first Gofra program. By the end, you will
+have compiled and run a working binary.
+
+/// note | Not installed yet?
+See [Install Gofra](../how-to/installation.md) first.
+///
+
+## Step 1: write a program
+
+Create `hello.gof`:
+
+```gofra
+#include "std"
+
+func void main[]
+    "Hello, World!" println
+end
+```
+
+## Step 2: compile and run
+
+```bash
+gofra run hello.gof
+```
+
+You should see:
+
+```
+Hello, World!
+```
+
+## What just happened
+
+- `#include "std"` includes required `println`
+
+- `func void main[]` declares the entry point.
+- `"Hello, World!"` pushes a string onto the stack.
+- `println` pops it and writes it to stdout.
