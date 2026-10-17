@@ -6,8 +6,6 @@ Standard input/output module.
 #include "std/io"
 ```
 
-<!-- TODO: confirm path — `std/io.gof` or `std/os/io.gof`? -->
-
 ## File descriptors
 
 | Constant  | Description     |
@@ -103,8 +101,6 @@ pub func void print_ptr[*void p]
 ```
 
 Prints a pointer as a hexadecimal address.
-
-<!-- TODO: confirm `*void` exists -->
 
 ## Input
 

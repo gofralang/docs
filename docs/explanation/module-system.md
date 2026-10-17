@@ -53,8 +53,6 @@ import a as my_module     // a.gof as `my_module`
 import "my_file.gof" as m // my_file.gof as `m`
 ```
 
-<!-- TODO: confirm `;` -->
-
 ## Visibility
 
 By default, all symbols are **private**. Mark exposed symbols with `pub`:

@@ -3,7 +3,7 @@
 Runtime assertions.
 
 ```gofra
-#include "std/assert.gof"
+#include "std/assert"
 ```
 
 ## `runtime_assert`

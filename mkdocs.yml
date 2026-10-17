@@ -78,6 +78,8 @@ nav:
 
   - Explanation:
       - Explanation: explanation/index.md
+      - RPN (Reverse-Polish-Notation): explanation/rpn.md
+
       - Module system: explanation/module-system.md
       - Compiler:
           - Architecture: explanation/compiler/architecture.md

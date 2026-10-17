@@ -36,8 +36,6 @@ Gofra operators are **postfix**: they follow their operands.
 | `\|\|`   | `bool bool -> bool` | OR          |
 | `lnot`   | `bool -> bool`      | NOT         |
 
-<!-- TODO: confirm — is NOT `lnot` or `!`? -->
-
 ## Bitwise
 
 | Operator | Mnemonic   | Description |
