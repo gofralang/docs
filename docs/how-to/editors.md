@@ -40,6 +40,35 @@ The extension is planned for the VS Code Marketplace. Until then, install
 from source.
 ///
 
+## Zed
+
+The Zed extension is not yet published in the extension registry. Install it
+as a dev extension.
+
+**Repository:** [github.com/gofralang/gofra-zed](https://github.com/gofralang/gofra-zed)
+
+### Features
+
+- Syntax highlighting for `.gof` and `.gofra` files.
+- Bracket matching and auto indentation.
+- Code outline for functions, structures, unions and type aliases.
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/gofralang/gofra-zed
+   ```
+
+2. In Zed open the extensions panel (`Cmd+Shift+X` / `Ctrl+Shift+X`), click the
+   `...` menu and choose **Install Dev Extension**.
+3. Select the `gofra-zed` directory.
+
+The syntax highlighting is implemented with a
+[tree-sitter](https://tree-sitter.github.io) grammar that lives in
+[github.com/gofralang/tree-sitter-gofra](https://github.com/gofralang/tree-sitter-gofra).
+
 ## Other editors
 
 If your editor is not listed here, you can write an extension yourself. The
