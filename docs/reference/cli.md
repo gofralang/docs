@@ -15,6 +15,7 @@ gofra <command> [options]
 | `run`     | Compile and run a source file   |
 | `clean`   | Clean build cache and artifacts |
 | `build`   | Compile a source file           |
+| `lsp`     | Run the language server         |
 
 ## `gofra build`
 
@@ -129,3 +130,20 @@ Compile and run a source file. Accepts the same options as `build`, plus:
 | Flag            | Default    | Description     |
 | --------------- | ---------- | --------------- |
 | `--cache <dir>` | `./.build` | Cache directory |
+
+## `gofra lsp`
+
+Runs the Gofra language server (LSP). The server communicates over the
+standard input and output, so it is meant to be spawned by an editor.
+
+```bash
+gofra lsp
+```
+
+The server provides the following features:
+
+- Diagnostics of the syntax errors, the type errors and the lint warnings
+- Document symbols (functions, structures, unions and type aliases)
+- Hover information with the type of a symbol
+- Go to definition
+- Code completion (the keywords and the symbols in scope)

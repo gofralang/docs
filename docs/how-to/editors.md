@@ -69,6 +69,20 @@ The syntax highlighting is implemented with a
 [tree-sitter](https://tree-sitter.github.io) grammar that lives in
 [github.com/gofralang/tree-sitter-gofra](https://github.com/gofralang/tree-sitter-gofra).
 
+## Language server
+
+Gofra ships a language server that provides diagnostics (syntax errors, type
+errors and lint warnings), document symbols, hover information, go to
+definition and code completion.
+
+```bash
+gofra lsp
+```
+
+The server speaks the [Language Server
+Protocol](https://microsoft.github.io/language-server-protocol/) over the
+standard input and output, so it can be used with any LSP capable editor.
+
 ## Other editors
 
 If your editor is not listed here, you can write an extension yourself. The
