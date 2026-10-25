@@ -54,6 +54,26 @@ end
 
 Notice: as compiler cannot insert boilerplate instructions into these functions, you must comply with return logic (link-registers) and manage arguments by own, naked functions supports parameters but it is only for type checking and calling convention only
 
+### `no_mangle`
+
+Applies to: `functions`
+
+Disables name mangling for the symbol. The symbol in the produced object file
+is exactly the identifier written in source — without module prefix, kind
+suffix
+
+```gofra
+no_mangle func void gofra_init[]
+    // ...
+end
+// Symbol in object file: `gofra_init`
+// C: void gofra_init(void);
+```
+
+Notice: `extern` functions and variables already imply `no_mangle` — they use
+the C ABI and are resolved by their literal name. Writing `no_mangle` on an
+`extern` declaration is redundant and emits a warning.
+
 ### `extern`
 
 Applies to: `functions`
